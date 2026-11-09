@@ -1,0 +1,9 @@
+{
+  "name": "Kuku Ledger — Chicken Farm ERP",
+  "short_name": "Kuku Ledger",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F7F9F7",
+  "theme_color": "#1B4332",
+  "icons": [{ "src": "/favicon.ico", "sizes": "64x64", "type": "image/x-icon" }]
+}

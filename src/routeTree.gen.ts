@@ -10,33 +10,91 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DailyRouteImport } from './routes/daily'
+import { Route as FlocksRouteImport } from './routes/flocks'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as DailyNewRouteImport } from './routes/daily_.new'
+import { Route as FlocksIdRouteImport } from './routes/flocks_.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DailyRoute = DailyRouteImport.update({
+  id: '/daily',
+  path: '/daily',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FlocksRoute = FlocksRouteImport.update({
+  id: '/flocks',
+  path: '/flocks',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DailyNewRoute = DailyNewRouteImport.update({
+  id: '/daily_/new',
+  path: '/daily/new',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FlocksIdRoute = FlocksIdRouteImport.update({
+  id: '/flocks_/$id',
+  path: '/flocks/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/daily': typeof DailyRoute
+  '/flocks': typeof FlocksRoute
+  '/login': typeof LoginRoute
+  '/daily/new': typeof DailyNewRoute
+  '/flocks/$id': typeof FlocksIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/daily': typeof DailyRoute
+  '/flocks': typeof FlocksRoute
+  '/login': typeof LoginRoute
+  '/daily/new': typeof DailyNewRoute
+  '/flocks/$id': typeof FlocksIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/daily': typeof DailyRoute
+  '/flocks': typeof FlocksRoute
+  '/login': typeof LoginRoute
+  '/daily_/new': typeof DailyNewRoute
+  '/flocks_/$id': typeof FlocksIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    '/' | '/daily' | '/flocks' | '/login' | '/daily/new' | '/flocks/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/daily' | '/flocks' | '/login' | '/daily/new' | '/flocks/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/daily'
+    | '/flocks'
+    | '/login'
+    | '/daily_/new'
+    | '/flocks_/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DailyRoute: typeof DailyRoute
+  FlocksRoute: typeof FlocksRoute
+  LoginRoute: typeof LoginRoute
+  DailyNewRoute: typeof DailyNewRoute
+  FlocksIdRoute: typeof FlocksIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +106,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/daily': {
+      id: '/daily'
+      path: '/daily'
+      fullPath: '/daily'
+      preLoaderRoute: typeof DailyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/flocks': {
+      id: '/flocks'
+      path: '/flocks'
+      fullPath: '/flocks'
+      preLoaderRoute: typeof FlocksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/daily_/new': {
+      id: '/daily_/new'
+      path: '/daily/new'
+      fullPath: '/daily/new'
+      preLoaderRoute: typeof DailyNewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/flocks_/$id': {
+      id: '/flocks_/$id'
+      path: '/flocks/$id'
+      fullPath: '/flocks/$id'
+      preLoaderRoute: typeof FlocksIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DailyRoute: DailyRoute,
+  FlocksRoute: FlocksRoute,
+  LoginRoute: LoginRoute,
+  DailyNewRoute: DailyNewRoute,
+  FlocksIdRoute: FlocksIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
