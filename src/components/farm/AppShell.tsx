@@ -1,5 +1,8 @@
 import { useEffect, useState, type ReactNode } from "react";
-import { Link, useLocation, useNavigate } from "@tanstack/react-router";
+import { Link, useLocation, useNavigate, type LinkProps } from "@tanstack/react-router";
+import type { LucideIcon } from "lucide-react";
+
+type NavItem = { to: NonNullable<LinkProps["to"]>; label: string; icon: LucideIcon };
 import {
   LayoutDashboard, Bird, ClipboardList, Syringe, Wheat, ShoppingCart, Users, Receipt, Wallet,
   BarChart3, FileText, Bell, FolderOpen, Settings, Menu, PanelLeftClose, PanelLeft, Wifi, WifiOff, RefreshCw, LogOut, Egg,
@@ -11,7 +14,7 @@ import { seedIfEmpty } from "@/lib/seed";
 import { syncNow } from "@/lib/sync";
 import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet";
 
-const groups = [
+const groups: { label: string; items: NavItem[] }[] = [
   { label: "Farm", items: [
     { to: "/", label: "Overview", icon: LayoutDashboard },
     { to: "/flocks", label: "Flocks", icon: Bird },
@@ -34,9 +37,9 @@ const groups = [
     { to: "/documents", label: "Documents", icon: FolderOpen },
     { to: "/settings", label: "Settings", icon: Settings },
   ]},
-] as const;
+];
 const all = groups.flatMap((g) => g.items);
-const bottom = ["/", "/daily", "/sales", "/flocks"] as const;
+const bottom: NavItem["to"][] = ["/", "/daily", "/sales", "/flocks"];
 
 function NavList({ collapsed, onNav }: { collapsed?: boolean; onNav?: () => void }) {
   const { pathname } = useLocation();

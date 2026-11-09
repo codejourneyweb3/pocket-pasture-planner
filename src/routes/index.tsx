@@ -56,7 +56,7 @@ function Overview() {
   const lastBr = broiler && data.reports.filter((r) => r.flockId === broiler.id && r.avgWeightKg).sort((a, b) => b.date.localeCompare(a.date))[0];
 
   const quick = [
-    { to: "/daily/new", label: "Daily Report", icon: ClipboardPlus },
+    { to: "/daily", label: "Daily Report", icon: ClipboardPlus },
     { to: "/flocks", label: "Add Flock", icon: Plus },
     { to: "/sales", label: "Record Sale", icon: ShoppingCart },
     { to: "/expenses", label: "Record Expense", icon: Receipt },
@@ -67,7 +67,7 @@ function Overview() {
   return (
     <div className="space-y-6">
       <PageHeader title={`Good day, ${name}`} sub={new Date().toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long" })}
-        actions={<Button asChild size="lg"><Link to="/daily/new"><ClipboardPlus /> Start Daily Report</Link></Button>} />
+        actions={<Button asChild size="lg"><Link to="/daily/new" search={{ draft: undefined }}><ClipboardPlus /> Start Daily Report</Link></Button>} />
 
       <div className="grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-6">
         <Stat label="Live birds" icon={<Bird />} value={live.toLocaleString()} hint={`${data.flocks.length} active flocks`} />

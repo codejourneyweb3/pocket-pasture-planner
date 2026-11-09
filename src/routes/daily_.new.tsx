@@ -12,7 +12,7 @@ import { useData, useUser } from "@/lib/hooks";
 import { getDb, save, today, uid, type DailyReport } from "@/lib/db";
 
 export const Route = createFileRoute("/daily_/new")({
-  validateSearch: (s: Record<string, unknown>) => ({ draft: typeof s.draft === "string" ? s.draft : undefined }),
+  validateSearch: (s: Record<string, unknown>) => ({ draft: typeof s['draft'] === "string" ? (s['draft'] as string) : undefined }),
   head: () => ({ meta: [
     { title: "New Daily Report — Kuku Ledger" },
     { name: "description", content: "Step-by-step daily flock report, saved on your device as you go." },
@@ -33,7 +33,7 @@ function NewReport() {
   const [step, setStep] = useState(0);
   const [savedAt, setSavedAt] = useState<string>("");
   const [photos, setPhotos] = useState<string[]>([]);
-  const timer = useRef<ReturnType<typeof setTimeout>>();
+  const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
   useEffect(() => {
     (async () => {
@@ -65,7 +65,8 @@ function NewReport() {
   const canNext = step !== 0 || (r.flockId && r.date);
 
   const submit = async () => {
-    const final: DailyReport = { ...r, status: "Submitted", step: undefined };
+    const { step: _s, ...rest } = r; void _s;
+    const final: DailyReport = { ...rest, status: "Submitted" };
     await save("reports", final, name, "submitted");
     if (flock && r.deaths) await save("flocks", { ...flock, liveCount: Math.max(0, flock.liveCount - r.deaths) }, name, "mortality");
     if (r.feedType && r.feedGivenKg) {

@@ -5,7 +5,7 @@ import { getDb } from "./db";
  * Set VITE_API_URL to enable; without it, changes stay safely queued on the device.
  */
 export async function syncNow() {
-  const api = import.meta.env.VITE_API_URL as string | undefined;
+  const api = import.meta.env['VITE_API_URL'] as string | undefined;
   if (!api || !navigator.onLine) return { synced: 0 };
   const db = getDb();
   const items = await db.outbox.toArray();
