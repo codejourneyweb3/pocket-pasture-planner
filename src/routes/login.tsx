@@ -35,7 +35,7 @@ function Login() {
 
   const submit = handleSubmit((v) => {
     const r = schema.safeParse(v);
-    if (!r.success) { setErr(r.error.issues[0].message); return; }
+    if (!r.success) { setErr(r.error.issues[0]?.message ?? "Invalid input"); return; }
     const acc = ACCOUNTS[v.id.trim().toLowerCase()];
     if (!acc) { setErr("We couldn't find that account. Check your email or phone."); return; }
     login({ ...acc, email: v.id }, remember);

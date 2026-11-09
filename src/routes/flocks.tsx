@@ -43,7 +43,7 @@ function Flocks() {
             { name: "notes", label: "Notes", type: "textarea" },
           ]}
           onSubmit={async (v) => {
-            const f: Flock = { id: uid(), name: v.name, type: v.type as Flock["type"], breed: v.breed, dateReceived: v.dateReceived, initialCount: +v.count, liveCount: +v.count, supplier: v.supplier, costPerChick: +v.cost || 0, status: "Active", health: "Good", notes: v.notes, targetWeightKg: +v.target || undefined };
+            const f: Flock = { id: uid(), name: (v['name'] ?? ''), type: (v['type'] ?? '') as Flock["type"], breed: (v['breed'] ?? ''), dateReceived: (v['dateReceived'] ?? ''), initialCount: +(v['count'] ?? ''), liveCount: +(v['count'] ?? ''), supplier: (v['supplier'] ?? ''), costPerChick: +(v['cost'] ?? '') || 0, status: "Active", health: "Good", notes: (v['notes'] ?? ''), ...(+(v['target'] ?? '') ? { targetWeightKg: +(v['target'] ?? '') } : {}) };
             await save("flocks", f, name, "created"); toast.success("Flock added");
           }} />} />
       <Section title="All flocks" action={

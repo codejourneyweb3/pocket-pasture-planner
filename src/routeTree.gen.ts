@@ -10,9 +10,20 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AlertsRouteImport } from './routes/alerts'
+import { Route as AnalyticsRouteImport } from './routes/analytics'
+import { Route as CashupRouteImport } from './routes/cashup'
+import { Route as CustomersRouteImport } from './routes/customers'
 import { Route as DailyRouteImport } from './routes/daily'
+import { Route as DocumentsRouteImport } from './routes/documents'
+import { Route as ExpensesRouteImport } from './routes/expenses'
+import { Route as FeedRouteImport } from './routes/feed'
 import { Route as FlocksRouteImport } from './routes/flocks'
+import { Route as HealthRouteImport } from './routes/health'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as ReportsRouteImport } from './routes/reports'
+import { Route as SalesRouteImport } from './routes/sales'
+import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as DailyNewRouteImport } from './routes/daily_.new'
 import { Route as FlocksIdRouteImport } from './routes/flocks_.$id'
 
@@ -21,9 +32,44 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AlertsRoute = AlertsRouteImport.update({
+  id: '/alerts',
+  path: '/alerts',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AnalyticsRoute = AnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CashupRoute = CashupRouteImport.update({
+  id: '/cashup',
+  path: '/cashup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CustomersRoute = CustomersRouteImport.update({
+  id: '/customers',
+  path: '/customers',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DailyRoute = DailyRouteImport.update({
   id: '/daily',
   path: '/daily',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DocumentsRoute = DocumentsRouteImport.update({
+  id: '/documents',
+  path: '/documents',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExpensesRoute = ExpensesRouteImport.update({
+  id: '/expenses',
+  path: '/expenses',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FeedRoute = FeedRouteImport.update({
+  id: '/feed',
+  path: '/feed',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FlocksRoute = FlocksRouteImport.update({
@@ -31,9 +77,29 @@ const FlocksRoute = FlocksRouteImport.update({
   path: '/flocks',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HealthRoute = HealthRouteImport.update({
+  id: '/health',
+  path: '/health',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReportsRoute = ReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SalesRoute = SalesRouteImport.update({
+  id: '/sales',
+  path: '/sales',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DailyNewRoute = DailyNewRouteImport.update({
@@ -49,50 +115,138 @@ const FlocksIdRoute = FlocksIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/alerts': typeof AlertsRoute
+  '/analytics': typeof AnalyticsRoute
+  '/cashup': typeof CashupRoute
+  '/customers': typeof CustomersRoute
   '/daily': typeof DailyRoute
+  '/documents': typeof DocumentsRoute
+  '/expenses': typeof ExpensesRoute
+  '/feed': typeof FeedRoute
   '/flocks': typeof FlocksRoute
+  '/health': typeof HealthRoute
   '/login': typeof LoginRoute
+  '/reports': typeof ReportsRoute
+  '/sales': typeof SalesRoute
+  '/settings': typeof SettingsRoute
   '/daily/new': typeof DailyNewRoute
   '/flocks/$id': typeof FlocksIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/alerts': typeof AlertsRoute
+  '/analytics': typeof AnalyticsRoute
+  '/cashup': typeof CashupRoute
+  '/customers': typeof CustomersRoute
   '/daily': typeof DailyRoute
+  '/documents': typeof DocumentsRoute
+  '/expenses': typeof ExpensesRoute
+  '/feed': typeof FeedRoute
   '/flocks': typeof FlocksRoute
+  '/health': typeof HealthRoute
   '/login': typeof LoginRoute
+  '/reports': typeof ReportsRoute
+  '/sales': typeof SalesRoute
+  '/settings': typeof SettingsRoute
   '/daily/new': typeof DailyNewRoute
   '/flocks/$id': typeof FlocksIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/alerts': typeof AlertsRoute
+  '/analytics': typeof AnalyticsRoute
+  '/cashup': typeof CashupRoute
+  '/customers': typeof CustomersRoute
   '/daily': typeof DailyRoute
+  '/documents': typeof DocumentsRoute
+  '/expenses': typeof ExpensesRoute
+  '/feed': typeof FeedRoute
   '/flocks': typeof FlocksRoute
+  '/health': typeof HealthRoute
   '/login': typeof LoginRoute
+  '/reports': typeof ReportsRoute
+  '/sales': typeof SalesRoute
+  '/settings': typeof SettingsRoute
   '/daily_/new': typeof DailyNewRoute
   '/flocks_/$id': typeof FlocksIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/daily' | '/flocks' | '/login' | '/daily/new' | '/flocks/$id'
+    | '/'
+    | '/alerts'
+    | '/analytics'
+    | '/cashup'
+    | '/customers'
+    | '/daily'
+    | '/documents'
+    | '/expenses'
+    | '/feed'
+    | '/flocks'
+    | '/health'
+    | '/login'
+    | '/reports'
+    | '/sales'
+    | '/settings'
+    | '/daily/new'
+    | '/flocks/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/daily' | '/flocks' | '/login' | '/daily/new' | '/flocks/$id'
+  to:
+    | '/'
+    | '/alerts'
+    | '/analytics'
+    | '/cashup'
+    | '/customers'
+    | '/daily'
+    | '/documents'
+    | '/expenses'
+    | '/feed'
+    | '/flocks'
+    | '/health'
+    | '/login'
+    | '/reports'
+    | '/sales'
+    | '/settings'
+    | '/daily/new'
+    | '/flocks/$id'
   id:
     | '__root__'
     | '/'
+    | '/alerts'
+    | '/analytics'
+    | '/cashup'
+    | '/customers'
     | '/daily'
+    | '/documents'
+    | '/expenses'
+    | '/feed'
     | '/flocks'
+    | '/health'
     | '/login'
+    | '/reports'
+    | '/sales'
+    | '/settings'
     | '/daily_/new'
     | '/flocks_/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AlertsRoute: typeof AlertsRoute
+  AnalyticsRoute: typeof AnalyticsRoute
+  CashupRoute: typeof CashupRoute
+  CustomersRoute: typeof CustomersRoute
   DailyRoute: typeof DailyRoute
+  DocumentsRoute: typeof DocumentsRoute
+  ExpensesRoute: typeof ExpensesRoute
+  FeedRoute: typeof FeedRoute
   FlocksRoute: typeof FlocksRoute
+  HealthRoute: typeof HealthRoute
   LoginRoute: typeof LoginRoute
+  ReportsRoute: typeof ReportsRoute
+  SalesRoute: typeof SalesRoute
+  SettingsRoute: typeof SettingsRoute
   DailyNewRoute: typeof DailyNewRoute
   FlocksIdRoute: typeof FlocksIdRoute
 }
@@ -106,11 +260,60 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/alerts': {
+      id: '/alerts'
+      path: '/alerts'
+      fullPath: '/alerts'
+      preLoaderRoute: typeof AlertsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/analytics': {
+      id: '/analytics'
+      path: '/analytics'
+      fullPath: '/analytics'
+      preLoaderRoute: typeof AnalyticsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cashup': {
+      id: '/cashup'
+      path: '/cashup'
+      fullPath: '/cashup'
+      preLoaderRoute: typeof CashupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/customers': {
+      id: '/customers'
+      path: '/customers'
+      fullPath: '/customers'
+      preLoaderRoute: typeof CustomersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/daily': {
       id: '/daily'
       path: '/daily'
       fullPath: '/daily'
       preLoaderRoute: typeof DailyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/documents': {
+      id: '/documents'
+      path: '/documents'
+      fullPath: '/documents'
+      preLoaderRoute: typeof DocumentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/expenses': {
+      id: '/expenses'
+      path: '/expenses'
+      fullPath: '/expenses'
+      preLoaderRoute: typeof ExpensesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/feed': {
+      id: '/feed'
+      path: '/feed'
+      fullPath: '/feed'
+      preLoaderRoute: typeof FeedRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/flocks': {
@@ -120,11 +323,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FlocksRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/health': {
+      id: '/health'
+      path: '/health'
+      fullPath: '/health'
+      preLoaderRoute: typeof HealthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/login': {
       id: '/login'
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reports': {
+      id: '/reports'
+      path: '/reports'
+      fullPath: '/reports'
+      preLoaderRoute: typeof ReportsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sales': {
+      id: '/sales'
+      path: '/sales'
+      fullPath: '/sales'
+      preLoaderRoute: typeof SalesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/daily_/new': {
@@ -146,9 +377,20 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AlertsRoute: AlertsRoute,
+  AnalyticsRoute: AnalyticsRoute,
+  CashupRoute: CashupRoute,
+  CustomersRoute: CustomersRoute,
   DailyRoute: DailyRoute,
+  DocumentsRoute: DocumentsRoute,
+  ExpensesRoute: ExpensesRoute,
+  FeedRoute: FeedRoute,
   FlocksRoute: FlocksRoute,
+  HealthRoute: HealthRoute,
   LoginRoute: LoginRoute,
+  ReportsRoute: ReportsRoute,
+  SalesRoute: SalesRoute,
+  SettingsRoute: SettingsRoute,
   DailyNewRoute: DailyNewRoute,
   FlocksIdRoute: FlocksIdRoute,
 }
