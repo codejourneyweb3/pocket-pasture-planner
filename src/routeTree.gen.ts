@@ -10,11 +10,18 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as FlocksRouteImport } from './routes/flocks'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as FlocksIdRouteImport } from './routes/flocks_.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FlocksRoute = FlocksRouteImport.update({
+  id: '/flocks',
+  path: '/flocks',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginRoute = LoginRouteImport.update({
@@ -22,31 +29,44 @@ const LoginRoute = LoginRouteImport.update({
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FlocksIdRoute = FlocksIdRouteImport.update({
+  id: '/flocks_/$id',
+  path: '/flocks/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/flocks': typeof FlocksRoute
   '/login': typeof LoginRoute
+  '/flocks/$id': typeof FlocksIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/flocks': typeof FlocksRoute
   '/login': typeof LoginRoute
+  '/flocks/$id': typeof FlocksIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/flocks': typeof FlocksRoute
   '/login': typeof LoginRoute
+  '/flocks_/$id': typeof FlocksIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login'
+  fullPaths: '/' | '/flocks' | '/login' | '/flocks/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login'
-  id: '__root__' | '/' | '/login'
+  to: '/' | '/flocks' | '/login' | '/flocks/$id'
+  id: '__root__' | '/' | '/flocks' | '/login' | '/flocks_/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  FlocksRoute: typeof FlocksRoute
   LoginRoute: typeof LoginRoute
+  FlocksIdRoute: typeof FlocksIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -58,6 +78,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/flocks': {
+      id: '/flocks'
+      path: '/flocks'
+      fullPath: '/flocks'
+      preLoaderRoute: typeof FlocksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/login': {
       id: '/login'
       path: '/login'
@@ -65,12 +92,21 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/flocks_/$id': {
+      id: '/flocks_/$id'
+      path: '/flocks/$id'
+      fullPath: '/flocks/$id'
+      preLoaderRoute: typeof FlocksIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  FlocksRoute: FlocksRoute,
   LoginRoute: LoginRoute,
+  FlocksIdRoute: FlocksIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
